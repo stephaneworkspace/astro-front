@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img class="logo" alt="Vue logo" src="../assets/logo.png" />
-    <InputData api="https://www.astrologie-traditionnelle.net/api/svg_chart" />
+    <InputData api="https://www.astrologie-traditionnelle.net/api/" />
   </div>
 </template>
 
