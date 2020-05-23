@@ -83,12 +83,14 @@
     <div v-if="show">
       <NatalChart :svg="svg" />
     </div>
-    <div class="slider_aspect" v-if="showAspects">
+    <div class="aspect_select" v-if="showAspects">
       <div class="columns">
         <div v-for="aspect in aspects" :key="aspect.text" class="column">
-          <div class="aspect_svg" v-html="aspect.svg" />
+          <div class="aspect_svg_select" v-html="aspect.svg" />
         </div>
       </div>
+    </div>
+    <div class="slider_aspect" v-if="showAspects">
       <section>
         <b-field label="Aspects">
           <!--:max="aspects.length"-->
@@ -276,8 +278,22 @@ a {
 .form_astro {
   margin: 20px 20px 20px;
 }
+.aspect_select {
+  margin: 20px 20px 80px;
+}
 .slider_aspect {
   margin: 20px 20px 80px;
+}
+.aspect_svg_select {
+  width: 20px;
+  height: 20px;
+  margin: 20px;
+  background: transparent;
+  /*border-radius: 50%;
+  border: double 4px solid;
+  color: #7957d5;
+  fill: #7957d5 !important;
+*/
 }
 .aspect_svg {
   width: 40px;
