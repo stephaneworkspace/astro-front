@@ -80,9 +80,11 @@
         </button>
       </div>
     </section>
-    {{ aspects }}
     <div v-if="show">
       <NatalChart :svg="svg" />
+    </div>
+    <div v-for="aspect in aspects" :key="aspect.text">
+      {{ aspect.text }}
     </div>
     <p>
       Cette page est à but non commercial pour ceux a qui ça interesse d'avoir
@@ -145,6 +147,13 @@ const maxDate = {
     new Date(today.getFullYear() + 300, today.getMonth(), today.getDate())
 };
 */
+
+export interface DataObjectAspectSvg {
+  svg: string;
+  text: string;
+  aspects: string[];
+}
+
 @Component({
   components: {
     NatalChart
@@ -160,7 +169,7 @@ export default class InputData extends Vue {
   public lat = 46.0222;
   public lng = 6.14569;
   public svg = "";
-  public aspects = "";
+  public aspects: DataObjectAspectSvg[] = [];
   public svgNatal(): void {
     const config = {
       "Content-Type": "application/x-www-form-urlencoded"
