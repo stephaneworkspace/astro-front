@@ -89,11 +89,11 @@
           v-for="(aspect, i) in aspects"
           :key="aspect.text"
           :min="0"
-          :max="aspects.length"
+          :max="aspects.length - 1"
           aria-label="Aspects"
           :tooltip="false"
         >
-          <b-slider-tick :value="i">{{ i }} - {{ aspect.text }}</b-slider-tick>
+          <b-slider-tick :value="i">{{ i }}</b-slider-tick>
         </b-slider>
       </b-field>
     </section>
