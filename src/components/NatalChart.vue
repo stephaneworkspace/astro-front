@@ -20,7 +20,7 @@ export default class InputData extends Vue {
   height: 100%;
 }
 .chart {
-  width: 600px;
-  height: 600px;
+  width: 1000px;
+  height: 1000px;
 }
 </style>
