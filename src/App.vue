@@ -45,11 +45,11 @@
 }
 
 #nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  color: #7957d5;
 }
 
 #nav a.router-link-exact-active {
+  font-weight: bold;
   color: #7957d5;
   text-decoration: underline;
 }
