@@ -219,19 +219,19 @@ export default class InputData extends Vue {
           this.lat +
           "&lng=" +
           this.lng +
-          "&yearT=" +
+          "&year_t=" +
           yearT +
-          "&monthT=" +
+          "&month_t=" +
           monthT +
-          "&dayT=" +
+          "&day_t=" +
           dayT +
-          "&hourT=" +
+          "&hour_t=" +
           hourT +
-          "&minT=" +
+          "&min_r=" +
           minT +
-          "&latT=" +
+          "&lat_t=" +
           this.latTransit +
-          "&lngT=" +
+          "&lng_t=" +
           this.lngTransit +
           "&aspect=" +
           this.aspectSelect,
