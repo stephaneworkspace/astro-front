@@ -83,9 +83,20 @@
     <div v-if="show">
       <NatalChart :svg="svg" />
     </div>
-    <div v-for="aspect in aspects" :key="aspect.text">
-      {{ aspect.text }}
-    </div>
+    <section>
+      <b-field label="Aspects">
+        <b-slider
+          v-for="(aspect, i) in aspects"
+          :key="aspect.text"
+          :min="0"
+          :max="aspects.length"
+          aria-label="Aspects"
+          :tooltip="false"
+        >
+          <b-slider-tick :value="i">{{ aspect.text }}</b-slider-tick>
+        </b-slider>
+      </b-field>
+    </section>
     <p>
       Cette page est à but non commercial pour ceux a qui ça interesse d'avoir
       des informations sur son thème astral. Le code source pour la génération
