@@ -81,7 +81,7 @@
       </div>
     </section>
     <div v-if="show">
-      <NatalChart svg="svg" />
+      <NatalChart :svg="svg" />
     </div>
     <p>
       Cette page est à but non commercial pour ceux a qui ça interesse d'avoir
