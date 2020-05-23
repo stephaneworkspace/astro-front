@@ -1,13 +1,13 @@
 <template>
   <div v-if="showAspects">
     <label class="label">Aspects</label>
-    <div class="aspect_text">
+    <div class="aspect-text">
       {{ aspects[aspectSelect].text }}
     </div>
     <div class="columns">
       <div v-for="(aspect, i) in aspects" :key="aspect.text" class="column">
         <div
-          class="aspect_svg_select"
+          class="aspect-svg-select"
           v-html="aspect.svg"
           @click="clickAspect(i)"
         />
@@ -61,19 +61,13 @@ export default class InputData extends Vue {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.aspect_text {
+.aspect-text {
   justify-content: center;
 }
-.aspect_svg_select {
+.aspect-svg-select {
   width: 27px;
   height: 27px;
   margin: 27px;
-  background: transparent;
-}
-.aspect_svg {
-  width: 40px;
-  height: 40px;
-  margin: 40px;
   background: transparent;
 }
 </style>

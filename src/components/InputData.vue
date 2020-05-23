@@ -2,7 +2,7 @@
   <div class="hello">
     <h3><strong>Vos coordonées</strong></h3>
     <section>
-      <div class="form_astro">
+      <div class="form-astro">
         <div class="columns">
           <div class="column">
             <b-field label="Date de naissance">
@@ -170,22 +170,7 @@ h3 {
 a {
   color: #7957d5;
 }
-.form_astro {
+.form-astro {
   margin: 20px 20px 20px;
-}
-.aspect_text {
-  justify-content: center;
-}
-.aspect_svg_select {
-  width: 27px;
-  height: 27px;
-  margin: 27px;
-  background: transparent;
-}
-.aspect_svg {
-  width: 40px;
-  height: 40px;
-  margin: 40px;
-  background: transparent;
 }
 </style>
