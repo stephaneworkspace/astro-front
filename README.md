@@ -1,5 +1,7 @@
 # astrology
 
+Code source du site web https://www.astrologie-traditionelle.net
+
 ## Project setup
 ```
 yarn install

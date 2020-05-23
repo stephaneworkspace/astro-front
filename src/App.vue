@@ -14,8 +14,10 @@
       >. Il est sous licence creative common. En revanche les éphémérides sont
       sous liscence GPL3. Ils se connectent à mon code source cité plus haut via
       un autre code source qui fait le pont entre la libraiaire C (swissephem
-      d'astrodientz
-      <a href="astro.com" target="_blank" rel="noopener">astro.com</a>) et ce
+      d'astrodienst
+      <a href="http://www.astro.com" target="_blank" rel="noopener"
+        >astro.com (Astrodienst)</a
+      >) et ce
       <a
         href="https://github.com/stephaneworkspace/libswe-sys"
         target="_blank"
