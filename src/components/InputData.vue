@@ -7,10 +7,11 @@
           <div class="column">
             <b-field label="Date de naissance">
               <b-datepicker
-                v-model="ddmmyyyy"
                 placeholder="Votre date de naissance"
                 icon="calendar-today"
                 size="is-medium"
+                v-model="ddmmyyyy"
+                @input="onChange"
               >
               </b-datepicker>
             </b-field>
@@ -18,10 +19,11 @@
           <div class="column">
             <b-field label="Heure de naissance">
               <b-timepicker
-                v-model="hhmm"
                 placeholder="Votre heure de naissance"
                 icon="clock"
                 size="is-medium"
+                v-model="hhmm"
+                @input="onChange"
                 editable
               >
               </b-timepicker>
@@ -30,10 +32,11 @@
           <div class="column">
             <b-field label="Fuseau horraire offset">
               <b-input
-                v-model="offset"
                 placeholder="2 pour Genève"
                 icon="clock"
                 size="is-medium"
+                v-model="offset"
+                @input="onChange"
               >
               </b-input>
             </b-field>
@@ -41,10 +44,11 @@
           <div class="column">
             <b-field label="Latitude">
               <b-input
-                v-model="lat"
                 placeholder="Votre latitude de naissance"
                 icon="compass"
                 size="is-medium"
+                v-model="lat"
+                @input="onChange"
               >
               </b-input>
             </b-field>
@@ -52,10 +56,11 @@
           <div class="column">
             <b-field label="Longitude">
               <b-input
-                v-model="lng"
                 placeholder="Votre longitude de naissance"
                 icon="compass"
                 size="is-medium"
+                v-model="lng"
+                @input="onChange"
               >
               </b-input>
             </b-field>
@@ -63,11 +68,13 @@
         </div>
       </div>
       <InputAspect :api="api" @change-aspect="updateAspect" />
+      <!--
       <div class="column">
         <button class="button is-primary" v-on:click="svgNatal">
           Charger le thème astral
         </button>
       </div>
+      -->
     </section>
     <div v-if="show">
       <NatalChart :svg="svg" />
@@ -99,8 +106,13 @@ export default class InputData extends Vue {
   public svg = "";
   public aspectSelect = 0;
 
+  public onChange(e) {
+    this.svgNatal();
+  }
+
   public updateAspect(e): void {
     this.aspectSelect = e;
+    this.svgNatal();
   }
 
   public svgNatal(): void {
