@@ -227,7 +227,7 @@ export default class InputData extends Vue {
           dayT +
           "&hour_t=" +
           hourT +
-          "&min_r=" +
+          "&min_t=" +
           minT +
           "&lat_t=" +
           this.latTransit +
