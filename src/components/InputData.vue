@@ -93,7 +93,7 @@
           aria-label="Aspects"
           :tooltip="false"
         >
-          <b-slider-tick :value="i">{{ aspect.text }}</b-slider-tick>
+          <b-slider-tick :value="i">{{ i }} - {{ aspect.text }}</b-slider-tick>
         </b-slider>
       </b-field>
     </section>
