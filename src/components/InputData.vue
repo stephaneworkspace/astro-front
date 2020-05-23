@@ -83,7 +83,7 @@
     <div v-if="show">
       <NatalChart :svg="svg" />
     </div>
-    <div class="slider_aspect">
+    <div class="slider_aspect" v-if="showAspects">
       <section>
         <b-field label="Aspects">
           <b-slider
@@ -97,6 +97,7 @@
                 :value="i"
                 class="aspect_svg"
                 v-html="aspect.svg"
+                v-if="i <= aspect.length - 1"
               ></b-slider-tick>
             </div>
           </b-slider>
@@ -179,6 +180,7 @@ export interface DataObjectAspectSvg {
 export default class InputData extends Vue {
   @Prop() private api!: string;
   public show = false;
+  public showAspects = false;
   public valid = false;
   public ddmmyyyy: Date = new Date();
   public hhmm: Date = new Date();
@@ -226,9 +228,6 @@ export default class InputData extends Vue {
 
   private created() {
     this.show = false;
-    this.ddmmyyyy = new Date();
-    this.hhmm = new Date();
-    this.offset = "2";
     this.getAspects();
   }
 
@@ -238,6 +237,7 @@ export default class InputData extends Vue {
     };
     axios.get(this.api + "aspects.json", config).then(res => {
       this.aspects = res.data;
+      this.showAspects = true;
     });
   }
 }
@@ -272,5 +272,6 @@ a {
   margin: 50px 0px 0px;
   background: transparent;
   border-radius: 50%;
+  border: double 4px solid;
 }
 </style>
