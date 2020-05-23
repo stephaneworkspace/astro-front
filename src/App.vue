@@ -40,10 +40,6 @@
   color: #2c3e50;
 }
 
-a {
-  color: #7957d5;
-}
-
 #nav {
   padding: 30px;
 }
@@ -55,5 +51,6 @@ a {
 
 #nav a.router-link-exact-active {
   color: #7957d5;
+  text-decoration: underline;
 }
 </style>
