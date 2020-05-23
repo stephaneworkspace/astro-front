@@ -200,7 +200,6 @@ export default class InputData extends Vue {
 
   private created() {
     this.show = false;
-    console.log("created");
     this.getAspects();
   }
 
