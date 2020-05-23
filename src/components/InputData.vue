@@ -93,7 +93,11 @@
             :tooltip="false"
           >
             <div v-for="(aspect, i) in aspects" :key="aspect.text">
-              <b-slider-tick :value="i" v-html="aspect.svg"></b-slider-tick>
+              <b-slider-tick
+                :value="i"
+                class="aspect_svg"
+                v-html="aspect.svg"
+              ></b-slider-tick>
             </div>
           </b-slider>
         </b-field>
@@ -258,5 +262,9 @@ a {
 }
 .slider_aspect {
   margin: 20px 20px 20px;
+}
+.aspect_svg {
+  width: 60px;
+  height: 60px;
 }
 </style>
