@@ -1,19 +1,10 @@
 <template>
   <div class="hello">
-    <h1>
-      Votre thème astral gratuit en français avec la structure des maisons selon
-      Placidus
-    </h1>
     <h3><strong>Vos coordonées</strong></h3>
     <section>
       <div class="form_astro">
         <div class="columns">
           <div class="column">
-            <!--
-              :date-formatter="dateFormatter"
-              :date-parser="dateParser"
-              :date-creator="dateCreator"
-            -->
             <b-field label="Date de naissance">
               <b-datepicker
                 v-model="ddmmyyyy"
@@ -71,10 +62,22 @@
           </div>
         </div>
       </div>
+      <div v-if="showAspects">
+        <label class="label">Aspects</label>
+        <div class="aspect_text">
+          {{ aspects[aspectSelect].text }}
+        </div>
+        <div class="columns">
+          <div v-for="(aspect, i) in aspects" :key="aspect.text" class="column">
+            <div
+              class="aspect_svg_select"
+              v-html="aspect.svg"
+              @click="clickAspect(i)"
+            />
+          </div>
+        </div>
+      </div>
       <div class="column">
-        <!--<b-button type="is-primary" @click="svg_natal"
-          >Charger le thème astral</b-button
-        >-->
         <button class="button is-primary" v-on:click="svgNatal">
           Charger le thème astral
         </button>
@@ -83,65 +86,6 @@
     <div v-if="show">
       <NatalChart :svg="svg" />
     </div>
-    <div class="aspect_select" v-if="showAspects">
-      <div class="columns">
-        <div v-for="(aspect, i) in aspects" :key="aspect.text" class="column">
-          <div
-            class="aspect_svg_select"
-            v-html="aspect.svg"
-            @click="clickAspect(i)"
-          />
-        </div>
-      </div>
-    </div>
-    <div class="slider_aspect" v-if="showAspects">
-      <section>
-        <b-field label="Aspects">
-          <!--:max="aspects.length"-->
-          <b-slider
-            :min="0"
-            :max="13"
-            aria-label="Aspects"
-            :tooltip="false"
-            v-model="aspectSelect"
-          >
-            <div v-for="(aspect, i) in aspects" :key="aspect.text">
-              <b-slider-tick
-                :value="i"
-                class="aspect_svg"
-                v-html="aspect.svg"
-              ></b-slider-tick>
-            </div>
-          </b-slider>
-        </b-field>
-      </section>
-    </div>
-    <div>
-      {{ aspects[aspectSelect].text }}
-    </div>
-    <br />
-    <p>
-      Cette page est à but non commercial pour ceux a qui ça interesse d'avoir
-      des informations sur son thème astral. Le code source pour la génération
-      de l'image vectorielle est disponible sur mon github et est écrit en Rust
-      <a
-        href="https://github.com/stephaneworkspace/astrology"
-        target="_blank"
-        rel="noopener"
-        >code source</a
-      >. Il est sous liscence creative common. En revanche les ephémérides sont
-      sous liscence GPL3. Ils se connectent a mon source cité plus haut via un
-      autre source ici qui fait le pont entre la libraiaire C (swissephem
-      d'astrodientz
-      <a href="astro.com" target="_blank" rel="noopener">astro.com</a>) et ce
-      <a
-        href="https://github.com/stephaneworkspace/lib-swe"
-        target="_blank"
-        rel="noopener"
-        >code source</a
-      >
-      ci en Rust.
-    </p>
   </div>
 </template>
 
@@ -149,38 +93,6 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import NatalChart from "@/components/NatalChart.vue";
 const axios = require("axios").default;
-/*
-const dateFormatter = {
-  type: Function,
-  required: false,
-  default: date => date.toLocaleDateString()
-};
-const dateParser = {
-  type: Function,
-  required: false,
-  default: date => new Date(Date.parse(date))
-};
-const dateCreator = {
-  type: Function,
-  required: false,
-  default: () => new Date()
-};
-const today = new Date();
-// Not work... to do later or with another frontend with a more documented
-// framework...
-const minDate = {
-  type: Function,
-  required: false,
-  default: () =>
-    new Date(today.getFullYear() - 300, today.getMonth(), today.getDate())
-};
-const maxDate = {
-  type: Function,
-  required: false,
-  default: () =>
-    new Date(today.getFullYear() + 300, today.getMonth(), today.getDate())
-};
-*/
 
 export interface DataObjectAspectSvg {
   svg: string;
@@ -207,7 +119,7 @@ export default class InputData extends Vue {
   public aspectSelect = 0;
   public aspects: DataObjectAspectSvg[] = [];
   public clickAspect(i): void {
-    alert(i);
+    this.aspectSelect = i;
   }
   public svgNatal(): void {
     const config = {
@@ -269,47 +181,27 @@ export default class InputData extends Vue {
 <style scoped>
 h3 {
   font-size: 24px;
-  margin: 20px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
+  margin: 10px 0 0;
 }
 a {
-  color: #42b983;
+  color: #7957d5;
 }
 .form_astro {
   margin: 20px 20px 20px;
 }
-.aspect_select {
-  margin: 20px 20px 80px;
-}
-.slider_aspect {
-  margin: 20px 20px 80px;
+.aspect_text {
+  justify-content: center;
 }
 .aspect_svg_select {
-  width: 25px;
-  height: 25px;
-  margin: 20px;
+  width: 27px;
+  height: 27px;
+  margin: 27px;
   background: transparent;
-  border-radius: 50%;
-  border: double 4px solid;
-  color: #7957d5;
-  /*fill: #7957d5 !important;*/
 }
 .aspect_svg {
   width: 40px;
   height: 40px;
   margin: 40px;
   background: transparent;
-  /*border-radius: 50%;
-  border: double 4px solid;
-  color: #7957d5;
-  fill: #7957d5 !important;
-*/
 }
 </style>

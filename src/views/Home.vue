@@ -1,6 +1,8 @@
 <template>
   <div class="home">
-    <img class="logo" alt="Vue logo" src="../assets/logo.png" />
+    <h1>
+      Thème astral gratuit avec la structure des maisons selon Placidus
+    </h1>
     <InputData api="https://www.astrologie-traditionnelle.net/api/" />
   </div>
 </template>
@@ -16,9 +18,3 @@ export default {
   }
 };
 </script>
-<style>
-.logo {
-  width: 622px;
-  height: 300px;
-}
-</style>
