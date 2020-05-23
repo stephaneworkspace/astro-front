@@ -142,9 +142,9 @@
     <div v-if="show">
       <NatalChart :svg="svg" />
     </div>
-    <transition name="fade">
-      <p v-if="show">bonjour</p>
-      <p v-if="!show">aureveoir</p>
+    <transition name="fade" v-on:enter="enter" v-on:leave="leave">
+      <p v-if="show2">bonjour</p>
+      <p v-if="!show2">au reveoir</p>
     </transition>
   </div>
 </template>
@@ -170,6 +170,7 @@ export interface DataObjectAspectSvg {
 export default class InputData extends Vue {
   @Prop() private api!: string;
   public show = false;
+  public show2 = false;
   public valid = false;
   public ddmmyyyy: Date = new Date();
   public hhmm: Date = new Date();
@@ -183,6 +184,16 @@ export default class InputData extends Vue {
   public lngTransit = 6.14569;
   public svg = "";
   public aspectSelect = 0;
+
+  public enter(el, done) {
+    this.show2 = true;
+    done();
+  }
+
+  public leave(el, done) {
+    this.show2 = false;
+    done();
+  }
 
   public onChange() {
     this.svgNatal();
@@ -271,5 +282,13 @@ a {
 }
 .form-astro {
   margin: 20px 20px 20px;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opactiy 0.5s;
+}
+.fade-enter,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
