@@ -13,8 +13,7 @@
               :date-formatter="dateFormatter"
               :date-parser="dateParser"
               :date-creator="dateCreator"
-
--->
+            -->
             <b-field label="Date de naissance">
               <b-datepicker
                 v-model="ddmmyyyy"
@@ -49,12 +48,6 @@
             </b-field>
           </div>
           <div class="column">
-            <!--
-              :date-formatter="dateFormatter"
-              :date-parser="dateParser"
-              :date-creator="dateCreator"
-
--->
             <b-field label="Latitude">
               <b-input
                 v-model="lat"
@@ -168,7 +161,7 @@ export default class InputData extends Vue {
     const year = this.ddmmyyyy.getFullYear();
     const month = this.ddmmyyyy.getMonth();
     const day = this.ddmmyyyy.getDay();
-    const hour = parseInt(this.hhmm.getHours(), 10) + parseInt(this.offset, 10);
+    const hour = parseInt(this.hhmm.getHours(), 10) + this.offset;
     const min = this.hhmm.getMinutes();
     axios
       .post(
