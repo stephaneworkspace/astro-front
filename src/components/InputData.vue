@@ -86,9 +86,10 @@
     <div class="slider_aspect" v-if="showAspects">
       <section>
         <b-field label="Aspects">
+          <!--:max="aspects.length"-->
           <b-slider
             :min="0"
-            :max="aspects.length"
+            :max="12"
             aria-label="Aspects"
             :tooltip="false"
             v-model="aspectSelect"
