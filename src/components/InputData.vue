@@ -111,6 +111,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
+import NatalChart from "@/components/NatalChart.vue";
 const axios = require("axios").default;
 /*
 const dateFormatter = {
@@ -144,7 +145,11 @@ const maxDate = {
     new Date(today.getFullYear() + 300, today.getMonth(), today.getDate())
 };
 */
-@Component
+@Component({
+  components: {
+    NatalChart
+  }
+})
 export default class InputData extends Vue {
   @Prop() private api!: string;
   public show = false;
