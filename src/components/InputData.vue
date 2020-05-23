@@ -80,6 +80,7 @@
         </button>
       </div>
     </section>
+    {{ aspects }}
     <div v-if="show">
       <NatalChart :svg="svg" />
     </div>
@@ -158,7 +159,8 @@ export default class InputData extends Vue {
   public offset = "2";
   public lat = 46.0222;
   public lng = 6.14569;
-  public svg!: string;
+  public svg = "";
+  public aspects;
   public svgNatal(): void {
     const config = {
       "Content-Type": "application/x-www-form-urlencoded"
@@ -172,7 +174,7 @@ export default class InputData extends Vue {
     const min = parseInt(this.hhmm.getMinutes().toString(), 10);
     axios
       .post(
-        this.api,
+        this.api + "svg_chart",
         "year=" +
           year +
           "&month=" +
@@ -198,21 +200,17 @@ export default class InputData extends Vue {
 
   private created() {
     this.show = false;
-    /*
+    console.log("created");
+    this.getAspects();
+  }
+
+  private getAspects() {
     const config = {
-      "Content-Type": "application/x-www-form-urlencoded"
+      "Content-Type": "application/json"
     };
-    axios
-      .post(
-        this.api,
-        "year=2000&month=1&day=1&hourf32=1.1&hour=1&min=1",
-        config
-      )
-      .then(res => {
-        this.svg = res.data;
-        this.$forceUpdate();
-      });
-*/
+    axios.get(this.api + "aspects.json", config).then(res => {
+      this.aspects = res.data;
+    });
   }
 }
 </script>
@@ -236,14 +234,5 @@ a {
 }
 .form_astro {
   margin: 20px 20px 20px;
-}
-.boxes {
-  display: -webkit-flex;
-  justify-content: center;
-  height: 100%;
-}
-.chart {
-  width: 600px;
-  height: 600px;
 }
 </style>
