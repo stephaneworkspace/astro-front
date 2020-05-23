@@ -85,8 +85,12 @@
     </div>
     <div class="aspect_select" v-if="showAspects">
       <div class="columns">
-        <div v-for="aspect in aspects" :key="aspect.text" class="column">
-          <div class="aspect_svg_select" v-html="aspect.svg" />
+        <div v-for="(aspect, i) in aspects" :key="aspect.text" class="column">
+          <div
+            class="aspect_svg_select"
+            v-html="aspect.svg"
+            @click="clickAspect(i)"
+          />
         </div>
       </div>
     </div>
@@ -202,6 +206,9 @@ export default class InputData extends Vue {
   public svg = "";
   public aspectSelect = 0;
   public aspects: DataObjectAspectSvg[] = [];
+  public clickAspect(i): void {
+    alert(i);
+  }
   public svgNatal(): void {
     const config = {
       "Content-Type": "application/x-www-form-urlencoded"
@@ -285,15 +292,14 @@ a {
   margin: 20px 20px 80px;
 }
 .aspect_svg_select {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   margin: 20px;
   background: transparent;
-  /*border-radius: 50%;
+  border-radius: 50%;
   border: double 4px solid;
   color: #7957d5;
-  fill: #7957d5 !important;
-*/
+  /*fill: #7957d5 !important;*/
 }
 .aspect_svg {
   width: 40px;
