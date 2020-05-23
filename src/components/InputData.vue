@@ -84,6 +84,11 @@
       <NatalChart :svg="svg" />
     </div>
     <div class="slider_aspect" v-if="showAspects">
+      <div class="columns">
+        <div v-for="aspect in aspects" :key="aspect.text" class="column">
+          <div class="aspect_svg" v-html="aspect.svg" />
+        </div>
+      </div>
       <section>
         <b-field label="Aspects">
           <!--:max="aspects.length"-->
