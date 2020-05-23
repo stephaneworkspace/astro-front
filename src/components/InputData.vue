@@ -24,7 +24,6 @@
                 size="is-medium"
                 v-model="hhmm"
                 @input="onChange"
-                editable
               >
               </b-timepicker>
             </b-field>
