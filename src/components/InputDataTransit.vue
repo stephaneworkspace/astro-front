@@ -7,10 +7,11 @@
           <div class="column">
             <b-field label="Date de naissance">
               <b-datepicker
-                v-model="ddmmyyyy"
                 placeholder="Votre date de naissance"
                 icon="calendar-today"
                 size="is-medium"
+                v-model="ddmmyyyy"
+                @input="onChange"
               >
               </b-datepicker>
             </b-field>
@@ -18,10 +19,11 @@
           <div class="column">
             <b-field label="Heure de naissance">
               <b-timepicker
-                v-model="hhmm"
                 placeholder="Votre heure de naissance"
                 icon="clock"
                 size="is-medium"
+                v-model="hhmm"
+                @input="onChange"
                 editable
               >
               </b-timepicker>
@@ -30,10 +32,11 @@
           <div class="column">
             <b-field label="Fuseau horraire offset">
               <b-input
-                v-model="offset"
                 placeholder="2 pour Genève"
                 icon="clock"
                 size="is-medium"
+                v-model="offset"
+                @input="onChange"
               >
               </b-input>
             </b-field>
@@ -41,10 +44,11 @@
           <div class="column">
             <b-field label="Latitude">
               <b-input
-                v-model="lat"
                 placeholder="Votre latitude de naissance"
                 icon="compass"
                 size="is-medium"
+                v-model="lat"
+                @input="onChange"
               >
               </b-input>
             </b-field>
@@ -52,10 +56,11 @@
           <div class="column">
             <b-field label="Longitude">
               <b-input
-                v-model="lng"
                 placeholder="Votre longitude de naissance"
                 icon="compass"
                 size="is-medium"
+                v-model="lng"
+                @input="onChange"
               >
               </b-input>
             </b-field>
@@ -65,10 +70,11 @@
           <div class="column">
             <b-field label="Date du transit">
               <b-datepicker
-                v-model="ddmmyyyyTransit"
                 placeholder="Votre date de transit"
                 icon="calendar-today"
                 size="is-medium"
+                v-model="ddmmyyyyTransit"
+                @input="onChange"
               >
               </b-datepicker>
             </b-field>
@@ -76,10 +82,11 @@
           <div class="column">
             <b-field label="Heure de transit">
               <b-timepicker
-                v-model="hhmmTransit"
                 placeholder="Votre heure de transit"
                 icon="clock"
                 size="is-medium"
+                v-model="hhmmTransit"
+                @input="onChange"
                 editable
               >
               </b-timepicker>
@@ -88,10 +95,11 @@
           <div class="column">
             <b-field label="Fuseau horraire offseti transit">
               <b-input
-                v-model="offsetTransit"
                 placeholder="2 pour Genève"
                 icon="clock"
                 size="is-medium"
+                v-model="offsetTransit"
+                @input="onChange"
               >
               </b-input>
             </b-field>
@@ -99,10 +107,11 @@
           <div class="column">
             <b-field label="Latitude de transit">
               <b-input
-                v-model="latTransit"
                 placeholder="Votre latitude de transit"
                 icon="compass"
                 size="is-medium"
+                v-model="latTransit"
+                @input="onChange"
               >
               </b-input>
             </b-field>
@@ -110,10 +119,11 @@
           <div class="column">
             <b-field label="Longitude de transit">
               <b-input
-                v-model="lngTransit"
                 placeholder="Votre longitude de transit"
                 icon="compass"
                 size="is-medium"
+                v-model="lngTransit"
+                @input="onChange"
               >
               </b-input>
             </b-field>
@@ -121,11 +131,13 @@
         </div>
       </div>
       <InputAspect :api="api" @change-aspect="updateAspect" />
+      <!--
       <div class="column">
         <button class="button is-primary" v-on:click="svgNatal">
           Charger le thème astral
         </button>
       </div>
+      -->
     </section>
     <div v-if="show">
       <NatalChart :svg="svg" />
@@ -167,6 +179,10 @@ export default class InputData extends Vue {
   public lngTransit = 6.14569;
   public svg = "";
   public aspectSelect = 0;
+
+  public onChange() {
+    this.svgNatal();
+  }
 
   public updateAspect(e): void {
     this.aspectSelect = e;

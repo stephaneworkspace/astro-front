@@ -106,7 +106,7 @@ export default class InputData extends Vue {
   public svg = "";
   public aspectSelect = 0;
 
-  public onChange(e) {
+  public onChange() {
     this.svgNatal();
   }
 
