@@ -88,7 +88,7 @@
         <b-field label="Aspects">
           <b-slider
             :min="0"
-            :max="aspects.length"
+            :max="aspects.length - 1"
             aria-label="Aspects"
             :tooltip="false"
           >
@@ -266,5 +266,6 @@ a {
 .aspect_svg {
   width: 60px;
   height: 60px;
+  margin: 60px 0px 0px;
 }
 </style>
