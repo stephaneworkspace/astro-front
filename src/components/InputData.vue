@@ -88,9 +88,10 @@
         <b-field label="Aspects">
           <b-slider
             :min="0"
-            :max="aspects.length - 1"
+            :max="aspects.length"
             aria-label="Aspects"
             :tooltip="false"
+            v-model="aspectSelect"
           >
             <div v-for="(aspect, i) in aspects" :key="aspect.text">
               <b-slider-tick
@@ -103,6 +104,10 @@
         </b-field>
       </section>
     </div>
+    <div>
+      {{ aspects[aspectSelect].text }}
+    </div>
+    <br />
     <p>
       Cette page est à but non commercial pour ceux a qui ça interesse d'avoir
       des informations sur son thème astral. Le code source pour la génération
@@ -187,6 +192,7 @@ export default class InputData extends Vue {
   public lat = 46.0222;
   public lng = 6.14569;
   public svg = "";
+  public aspectSelect = 0;
   public aspects: DataObjectAspectSvg[] = [];
   public svgNatal(): void {
     const config = {
@@ -215,7 +221,9 @@ export default class InputData extends Vue {
           "&lat=" +
           this.lat +
           "&lng=" +
-          this.lng,
+          this.lng +
+          "&aspect=" +
+          this.aspectSelect,
         config
       )
       .then(res => {
@@ -263,15 +271,17 @@ a {
   margin: 20px 20px 20px;
 }
 .slider_aspect {
-  margin: 20px 20px 90px;
+  margin: 20px 20px 80px;
 }
 .aspect_svg {
-  width: 50px;
-  height: 50px;
-  margin: 50px 0px 0px;
+  width: 40px;
+  height: 40px;
+  margin: 40px;
   background: transparent;
-  border-radius: 50%;
+  /*border-radius: 50%;
   border: double 4px solid;
   color: #7957d5;
+  fill: #7957d5 !important;
+*/
 }
 </style>
