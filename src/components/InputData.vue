@@ -81,6 +81,7 @@
       </div>
     </section>
     <div class="boxes" v-if="show">
+      <NatalChart svg="svg" />
       <div class="chart" v-html="svg" />
     </div>
     <p>
