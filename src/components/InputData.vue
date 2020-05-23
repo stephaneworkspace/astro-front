@@ -88,7 +88,7 @@
         <b-field label="Aspects">
           <b-slider
             :min="0"
-            :max="aspects.length - 1"
+            :max="aspects.length"
             aria-label="Aspects"
             :tooltip="false"
             v-model="aspectSelect"
@@ -214,7 +214,7 @@ export default class InputData extends Vue {
           month +
           "&day=" +
           day +
-          "&hourf32=0.0&hour=" +
+          "&hour=" +
           hour +
           "&min=" +
           min +
