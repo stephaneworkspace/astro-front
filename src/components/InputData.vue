@@ -97,7 +97,6 @@
                 :value="i"
                 class="aspect_svg"
                 v-html="aspect.svg"
-                v-if="i <= aspect.length - 1"
               ></b-slider-tick>
             </div>
           </b-slider>
@@ -272,7 +271,7 @@ a {
   margin: 50px 0px 0px;
   background: transparent;
   border-radius: 50%;
-  /*border: double 4px solid;*/
+  border: double 4px solid;
   color: #7957d5;
 }
 </style>
