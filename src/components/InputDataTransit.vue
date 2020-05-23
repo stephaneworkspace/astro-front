@@ -186,6 +186,7 @@ export default class InputData extends Vue {
 
   public updateAspect(e): void {
     this.aspectSelect = e;
+    this.svgNatal();
   }
 
   public svgNatal(): void {
@@ -250,6 +251,7 @@ export default class InputData extends Vue {
 
   private created() {
     this.show = false;
+    this.svgNatal();
   }
 }
 </script>

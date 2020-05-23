@@ -156,6 +156,7 @@ export default class InputData extends Vue {
 
   private created() {
     this.show = false;
+    this.svgNatal();
   }
 }
 </script>
