@@ -36,7 +36,6 @@
               </b-timepicker>
             </b-field>
           </div>
-          <!--
           <div class="column">
             <b-field label="Fuseau horraire offset">
               <b-input
@@ -48,7 +47,6 @@
               </b-input>
             </b-field>
           </div>
-          -->
           <div class="column">
             <b-field label="Latitude">
               <b-input
@@ -152,7 +150,7 @@ export default class InputData extends Vue {
   public valid = false;
   public ddmmyyyy: Date = new Date();
   public hhmm: Date = new Date();
-  public offset = 0;
+  public offset = "2";
   public lat = 46.0222;
   public lng = 6.14569;
   public svg!: string;
