@@ -36,6 +36,7 @@
               </b-timepicker>
             </b-field>
           </div>
+          <!--
           <div class="column">
             <b-field label="Fuseau horraire offset">
               <b-input
@@ -47,6 +48,7 @@
               </b-input>
             </b-field>
           </div>
+          -->
           <div class="column">
             <b-field label="Latitude">
               <b-input
@@ -150,7 +152,7 @@ export default class InputData extends Vue {
   public valid = false;
   public ddmmyyyy: Date = new Date();
   public hhmm: Date = new Date();
-  public offset = 2;
+  public offset = 0;
   public lat = 46.0222;
   public lng = 6.14569;
   public svg!: string;
@@ -164,7 +166,7 @@ export default class InputData extends Vue {
     const hour =
       parseInt(this.hhmm.getHours().toString(), 10) +
       parseInt(this.offset.toString(), 10);
-    const min = this.hhmm.getMinutes();
+    const min = parseInt(this.hhmm.getMinutes().toString(), 10);
     axios
       .post(
         this.api,
