@@ -1,18 +1,24 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <img class="logo" alt="Vue logo" src="../assets/logo.png" />
+    <InputData api="https://www.astrologie-traditionnelle.net/api/svg_chart" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+import InputData from "@/components/InputData.vue";
 
 export default {
   name: "Home",
   components: {
-    HelloWorld
+    InputData
   }
 };
 </script>
+<style>
+.logo {
+  width: 622px;
+  height: 300px;
+}
+</style>
