@@ -9,5 +9,17 @@
       <router-link to="/">Thème natal</router-link> |
       <router-link to="/transit">Transit</router-link>
     </div>
+    <InputDataTransit api="https://www.astrologie-traditionnelle.net/api/" />
   </div>
 </template>
+<script>
+// @ is an alias to /src
+import InputDataTransit from "@/components/InputDataTransit.vue";
+
+export default {
+  name: "Transit",
+  components: {
+    InputDataTransit
+  }
+};
+</script>
