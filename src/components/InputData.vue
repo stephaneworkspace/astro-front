@@ -88,7 +88,7 @@
         <b-field label="Aspects">
           <!--:max="aspects.length"-->
           <b-slider
-            :min="1"
+            :min="0"
             :max="13"
             aria-label="Aspects"
             :tooltip="false"
