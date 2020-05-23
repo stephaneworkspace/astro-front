@@ -160,7 +160,7 @@ export default class InputData extends Vue {
   public lat = 46.0222;
   public lng = 6.14569;
   public svg = "";
-  public aspects;
+  public aspects = "";
   public svgNatal(): void {
     const config = {
       "Content-Type": "application/x-www-form-urlencoded"
