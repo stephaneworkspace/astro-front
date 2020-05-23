@@ -80,7 +80,9 @@
         </button>
       </div>
     </section>
-    <NatalChart v-if="show" svg="svg" />
+    <div v-if="show">
+      <NatalChart svg="svg" />
+    </div>
     <p>
       Cette page est à but non commercial pour ceux a qui ça interesse d'avoir
       des informations sur son thème astral. Le code source pour la génération
