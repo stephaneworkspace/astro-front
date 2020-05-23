@@ -62,21 +62,7 @@
           </div>
         </div>
       </div>
-      <div v-if="showAspects">
-        <label class="label">Aspects</label>
-        <div class="aspect_text">
-          {{ aspects[aspectSelect].text }}
-        </div>
-        <div class="columns">
-          <div v-for="(aspect, i) in aspects" :key="aspect.text" class="column">
-            <div
-              class="aspect_svg_select"
-              v-html="aspect.svg"
-              @click="clickAspect(i)"
-            />
-          </div>
-        </div>
-      </div>
+      <InputAspect :api="api" @change-aspect="updateAspect" />
       <div class="column">
         <button class="button is-primary" v-on:click="svgNatal">
           Charger le thème astral
@@ -92,23 +78,18 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
 import NatalChart from "@/components/NatalChart.vue";
+import InputAspect from "@/components/InputAspect.vue";
 const axios = require("axios").default;
-
-export interface DataObjectAspectSvg {
-  svg: string;
-  text: string;
-  aspects: string[];
-}
 
 @Component({
   components: {
-    NatalChart
+    NatalChart,
+    InputAspect
   }
 })
 export default class InputData extends Vue {
   @Prop() private api!: string;
   public show = false;
-  public showAspects = false;
   public valid = false;
   public ddmmyyyy: Date = new Date();
   public hhmm: Date = new Date();
@@ -117,10 +98,11 @@ export default class InputData extends Vue {
   public lng = 6.14569;
   public svg = "";
   public aspectSelect = 0;
-  public aspects: DataObjectAspectSvg[] = [];
-  public clickAspect(i): void {
-    this.aspectSelect = i;
+
+  public updateAspect(e): void {
+    this.aspectSelect = e;
   }
+
   public svgNatal(): void {
     const config = {
       "Content-Type": "application/x-www-form-urlencoded"
@@ -162,17 +144,6 @@ export default class InputData extends Vue {
 
   private created() {
     this.show = false;
-    this.getAspects();
-  }
-
-  private getAspects() {
-    const config = {
-      "Content-Type": "application/json"
-    };
-    axios.get(this.api + "aspects.json", config).then(res => {
-      this.aspects = res.data;
-      this.showAspects = true;
-    });
   }
 }
 </script>
