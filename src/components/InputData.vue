@@ -161,7 +161,9 @@ export default class InputData extends Vue {
     const year = this.ddmmyyyy.getFullYear();
     const month = this.ddmmyyyy.getMonth();
     const day = this.ddmmyyyy.getDay();
-    const hour = parseInt(this.hhmm.getHours(), 10) + this.offset;
+    const hour =
+      parseInt(this.hhmm.getHours().toString(), 10) +
+      parseInt(this.offset.toString(), 10);
     const min = this.hhmm.getMinutes();
     axios
       .post(
