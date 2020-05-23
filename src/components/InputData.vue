@@ -89,7 +89,7 @@
           <!--:max="aspects.length"-->
           <b-slider
             :min="0"
-            :max="12"
+            :max="13"
             aria-label="Aspects"
             :tooltip="false"
             v-model="aspectSelect"
