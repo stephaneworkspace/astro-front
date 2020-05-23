@@ -86,14 +86,14 @@
     <section>
       <b-field label="Aspects">
         <b-slider
-          v-for="(aspect, i) in aspects"
-          :key="aspect.text"
           :min="0"
-          :max="aspects.length - 1"
+          :max="aspects.length"
           aria-label="Aspects"
           :tooltip="false"
         >
-          <b-slider-tick :value="i">{{ i }}</b-slider-tick>
+          <div v-for="(aspect, i) in aspects" :key="aspect.text">
+            <b-slider-tick :value="i">{{ i }}</b-slider-tick>
+          </div>
         </b-slider>
       </b-field>
     </section>
