@@ -226,6 +226,9 @@ export default class InputData extends Vue {
 
   private created() {
     this.show = false;
+    this.ddmmyyyy = new Date();
+    this.hhmm = new Date();
+    this.offset = "2";
     this.getAspects();
   }
 
@@ -267,5 +270,7 @@ a {
   width: 50px;
   height: 50px;
   margin: 50px 0px 0px;
+  background: transparent;
+  border-radius: 50%;
 }
 </style>
