@@ -261,11 +261,11 @@ a {
   margin: 20px 20px 20px;
 }
 .slider_aspect {
-  margin: 20px 20px 20px;
+  margin: 20px 20px 90px;
 }
 .aspect_svg {
-  width: 60px;
-  height: 60px;
-  margin: 60px 0px 0px;
+  width: 50px;
+  height: 50px;
+  margin: 50px 0px 0px;
 }
 </style>
