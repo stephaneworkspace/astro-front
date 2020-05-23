@@ -83,20 +83,22 @@
     <div v-if="show">
       <NatalChart :svg="svg" />
     </div>
-    <section>
-      <b-field label="Aspects">
-        <b-slider
-          :min="0"
-          :max="aspects.length"
-          aria-label="Aspects"
-          :tooltip="false"
-        >
-          <div v-for="(aspect, i) in aspects" :key="aspect.text">
-            <b-slider-tick :value="i">{{ i }}</b-slider-tick>
-          </div>
-        </b-slider>
-      </b-field>
-    </section>
+    <div class="slider_aspect">
+      <section>
+        <b-field label="Aspects">
+          <b-slider
+            :min="0"
+            :max="aspects.length"
+            aria-label="Aspects"
+            :tooltip="false"
+          >
+            <div v-for="(aspect, i) in aspects" :key="aspect.text">
+              <b-slider-tick :value="i" v-html="aspect.svg"></b-slider-tick>
+            </div>
+          </b-slider>
+        </b-field>
+      </section>
+    </div>
     <p>
       Cette page est à but non commercial pour ceux a qui ça interesse d'avoir
       des informations sur son thème astral. Le code source pour la génération
@@ -252,6 +254,9 @@ a {
   color: #42b983;
 }
 .form_astro {
+  margin: 20px 20px 20px;
+}
+.slider_aspect {
   margin: 20px 20px 20px;
 }
 </style>
