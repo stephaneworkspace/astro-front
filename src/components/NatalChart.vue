@@ -8,8 +8,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 @Component
 export default class InputData extends Vue {
-  @Prop() private api!: string;
-  public svg!: string;
+  @Prop() private svg!: string;
 }
 </script>
 
