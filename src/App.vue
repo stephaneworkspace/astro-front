@@ -1,10 +1,5 @@
 <template>
   <div id="app">
-    <img class="logo" alt="Vue logo" src="assets/logo.png" />
-    <div id="nav">
-      <router-link to="/">Thème natal</router-link> |
-      <router-link to="/transit">Transit</router-link>
-    </div>
     <router-view />
     <br />
     <p>
