@@ -42,41 +42,8 @@
           </div>
         </div>
       </div>
-      <InputGps :api="api" @change-lat-lng="changeLatLng" />
-      <!--
-          <div class="column">
-            <b-field label="Latitude">
-              <b-input
-                placeholder="Votre latitude de naissance"
-                icon="compass"
-                size="is-medium"
-                v-model="lat"
-                @input="onChange"
-              >
-              </b-input>
-            </b-field>
-          </div>
-          <div class="column">
-            <b-field label="Longitude">
-              <b-input
-                placeholder="Votre longitude de naissance"
-                icon="compass"
-                size="is-medium"
-                v-model="lng"
-                @input="onChange"
-              >
-              </b-input>
-            </b-field>
-          </div>
--->
+      <InputGps :api="api" :swTransit="false" @change-lat-lng="changeLatLng" />
       <InputAspect :api="api" @change-aspect="updateAspect" />
-      <!--
-      <div class="column">
-        <button class="button is-primary" v-on:click="svgNatal">
-          Charger le thème astral
-        </button>
-      </div>
-      -->
     </section>
     <div v-if="show">
       <NatalChart :svg="svg" />

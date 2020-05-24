@@ -6,44 +6,60 @@
       </b-field>
     </div>
     <div class="column">
-      <b-field label="Latitude">
+      <b-field :label="!swTransit ? 'Latitude' : 'Latitude de transit'">
         <b-input
-          placeholder="Votre latitude de naissance"
           icon="compass"
           size="is-medium"
           v-if="!swAutoComplete"
           v-model="lat"
+          :placeholder="
+            !swTransit
+              ? 'Votre latitude de naissance'
+              : 'Votre latitude de transit'
+          "
           @input="onChangeLat"
         >
         </b-input>
         <b-input
-          placeholder="Votre latitude de naissance"
           icon="compass"
           size="is-medium"
           v-if="swAutoComplete"
           v-model="lat"
+          :placeholder="
+            !swTransit
+              ? 'Votre latitude de naissance'
+              : 'Votre latitude de transit'
+          "
           disabled
         >
         </b-input>
       </b-field>
     </div>
     <div class="column">
-      <b-field label="Longitude">
+      <b-field :label="!swTransit ? 'Longitude' : 'Longitude de transit'">
         <b-input
-          placeholder="Votre longitude de naissance"
           icon="compass"
           size="is-medium"
           v-if="!swAutoComplete"
           v-model="lng"
+          :placeholder="
+            !swTransit
+              ? 'Votre longitude de naissance'
+              : 'Votre longitude de transit'
+          "
           @input="onChangeLng"
         >
         </b-input>
         <b-input
-          placeholder="Votre longitude de naissance"
           icon="compass"
           size="is-medium"
           v-if="swAutoComplete"
           v-model="lng"
+          :placeholder="
+            !swTransit
+              ? 'Votre longitude de naissance'
+              : 'Votre longitude de transit'
+          "
           disabled
         >
         </b-input>
@@ -52,11 +68,13 @@
     <div class="column" v-if="swAutoComplete">
       <b-field label="Recherche">
         <b-autocomplete
-          placeholder="Votre lieu de naissance"
-          field="Ville de naissance"
           icon="search"
           size="is-medium"
           v-model="name"
+          :placeholder="
+            !swTransit ? 'Votre ville de naissance' : 'Votre ville de transit'
+          "
+          :field="!swTransit ? 'Ville de naissance' : 'Ville de transit'"
           :data="list"
           :loading="isFetching"
           @typing="getAsyncData"
@@ -100,6 +118,7 @@ export interface FilterCity {
 @Component({})
 export default class InputData extends Vue {
   @Prop() private api!: string;
+  @Prop() private swTransit!: boolean;
   public swAutoComplete = false;
   public list: FilterCity[] = [];
   public selected: FilterCity = { country: "", name: "", lat: 0, lng: 0 };

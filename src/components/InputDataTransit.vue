@@ -40,31 +40,12 @@
               </b-input>
             </b-field>
           </div>
-          <div class="column">
-            <b-field label="Latitude">
-              <b-input
-                placeholder="Votre latitude de naissance"
-                icon="compass"
-                size="is-medium"
-                v-model="lat"
-                @input="onChange"
-              >
-              </b-input>
-            </b-field>
-          </div>
-          <div class="column">
-            <b-field label="Longitude">
-              <b-input
-                placeholder="Votre longitude de naissance"
-                icon="compass"
-                size="is-medium"
-                v-model="lng"
-                @input="onChange"
-              >
-              </b-input>
-            </b-field>
-          </div>
         </div>
+        <InputGps
+          :api="api"
+          :swTransit="false"
+          @change-lat-lng="changeLatLngNatal"
+        />
         <div class="columns">
           <div class="column">
             <b-field label="Date du transit">
@@ -103,40 +84,14 @@
               </b-input>
             </b-field>
           </div>
-          <div class="column">
-            <b-field label="Latitude de transit">
-              <b-input
-                placeholder="Votre latitude de transit"
-                icon="compass"
-                size="is-medium"
-                v-model="latTransit"
-                @input="onChange"
-              >
-              </b-input>
-            </b-field>
-          </div>
-          <div class="column">
-            <b-field label="Longitude de transit">
-              <b-input
-                placeholder="Votre longitude de transit"
-                icon="compass"
-                size="is-medium"
-                v-model="lngTransit"
-                @input="onChange"
-              >
-              </b-input>
-            </b-field>
-          </div>
         </div>
       </div>
+      <InputGps
+        :api="api"
+        :swTransit="true"
+        @change-lat-lng="changeLatLngTransit"
+      />
       <InputAspect :api="api" @change-aspect="updateAspect" />
-      <!--
-      <div class="column">
-        <button class="button is-primary" v-on:click="svgNatal">
-          Charger le thème astral
-        </button>
-      </div>
-      -->
     </section>
     <div v-if="show">
       <NatalChart :svg="svg" />
@@ -148,6 +103,7 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import NatalChart from "@/components/NatalChart.vue";
 import InputAspect from "@/components/InputAspect.vue";
+import InputGps from "@/components/InputGps.vue";
 const axios = require("axios").default;
 
 export interface DataObjectAspectSvg {
@@ -159,7 +115,8 @@ export interface DataObjectAspectSvg {
 @Component({
   components: {
     NatalChart,
-    InputAspect
+    InputAspect,
+    InputGps
   }
 })
 export default class InputData extends Vue {
@@ -179,6 +136,18 @@ export default class InputData extends Vue {
   public lngTransit = 6.14569;
   public svg = "";
   public aspectSelect = 0;
+
+  public changeLatLngNatal(e) {
+    this.lat = e.lat;
+    this.lng = e.lng;
+    this.svgNatal();
+  }
+
+  public changeLatLngTransit(e) {
+    this.latTransit = e.lat;
+    this.lngTransit = e.lng;
+    this.svgNatal();
+  }
 
   public onChange() {
     this.svgNatal();
