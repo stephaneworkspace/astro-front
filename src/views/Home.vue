@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img class="logo" alt="Vue logo" src="../assets/logo.png" />
+    <img class="logo" alt="Top" src="../assets/logo.png" />
     <h1>
       Thème astral gratuit avec la structure des maisons selon Placidus
     </h1>
@@ -9,17 +9,21 @@
       <router-link to="/transit">Transit</router-link>
     </div>
     <InputData api="https://www.astrologie-traditionnelle.net/api/" />
+    <Liscense />
+    <img class="logo-bottom" alt="Bottom" src="../assets/bottom.png" />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import InputData from "@/components/InputData.vue";
+import Liscense from "@/components/Liscense.vue";
 
 export default {
   name: "Home",
   components: {
-    InputData
+    InputData,
+    Liscense
   }
 };
 </script>
