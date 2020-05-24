@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div>
     <h3><strong>Vos coordonées</strong></h3>
     <section>
       <div class="form-astro">
@@ -40,6 +40,10 @@
               </b-input>
             </b-field>
           </div>
+        </div>
+      </div>
+      <InputGps :api="api" @change-lat-lng="changeLatLng" />
+      <!--
           <div class="column">
             <b-field label="Latitude">
               <b-input
@@ -64,8 +68,7 @@
               </b-input>
             </b-field>
           </div>
-        </div>
-      </div>
+-->
       <InputAspect :api="api" @change-aspect="updateAspect" />
       <!--
       <div class="column">
@@ -85,12 +88,14 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 import NatalChart from "@/components/NatalChart.vue";
 import InputAspect from "@/components/InputAspect.vue";
+import InputGps from "@/components/InputGps.vue";
 const axios = require("axios").default;
 
 @Component({
   components: {
     NatalChart,
-    InputAspect
+    InputAspect,
+    InputGps
   }
 })
 export default class InputData extends Vue {
@@ -104,6 +109,12 @@ export default class InputData extends Vue {
   public lng = 6.14569;
   public svg = "";
   public aspectSelect = 0;
+
+  public changeLatLng(e) {
+    this.lat = e.lat;
+    this.lng = e.lng;
+    this.svgNatal();
+  }
 
   public onChange() {
     this.svgNatal();
