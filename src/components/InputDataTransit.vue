@@ -164,14 +164,18 @@ export default class InputData extends Vue {
       "Content-Type": "application/x-www-form-urlencoded"
     };
     const year = this.ddmmyyyy.getFullYear();
-    const month = this.ddmmyyyy.getMonth();
-    const day = this.ddmmyyyy.getDay();
+    // const month = this.ddmmyyyy.getMonth(); // BUG
+    // const day = this.ddmmyyyy.getDay(); // BUG
+    const day = this.ddmmyyyy.getMonth();
+    const month = this.ddmmyyyy.getDay();
     const hour = parseInt(this.hhmm.getHours().toString(), 10);
     //   parseInt(this.offset.toString(), 10);
     const min = parseInt(this.hhmm.getMinutes().toString(), 10);
     const yearT = this.ddmmyyyyTransit.getFullYear();
-    const monthT = this.ddmmyyyyTransit.getMonth();
-    const dayT = this.ddmmyyyyTransit.getDay();
+    // const monthT = this.ddmmyyyyTransit.getMonth(); // BUG
+    // const dayT = this.ddmmyyyyTransit.getDay(); // BUG
+    const dayT = this.ddmmyyyyTransit.getMonth();
+    const monthT = this.ddmmyyyyTransit.getDay();
     const hourT = parseInt(this.hhmmTransit.getHours().toString(), 10);
     //parseInt(this.offsetTransit.toString(), 10);
     const minT = parseInt(this.hhmmTransit.getMinutes().toString(), 10);
