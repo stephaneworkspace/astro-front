@@ -99,8 +99,10 @@ export default class InputData extends Vue {
       "Content-Type": "application/x-www-form-urlencoded"
     };
     const year = this.ddmmyyyy.getFullYear();
-    const month = this.ddmmyyyy.getMonth();
-    const day = this.ddmmyyyy.getDay();
+    //const month = this.ddmmyyyy.getMonth(); // BUG
+    //const day = this.ddmmyyyy.getDay(); // BUG
+    const day = this.ddmmyyyy.getMonth(); // BUG
+    const month = this.ddmmyyyy.getDay(); // BUG
     const hour = parseInt(this.hhmm.getHours().toString(), 10);
     //  parseInt(this.offset.toString(), 10);
     const min = parseInt(this.hhmm.getMinutes().toString(), 10);
