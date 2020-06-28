@@ -28,6 +28,7 @@
               </b-timepicker>
             </b-field>
           </div>
+          <!--
           <div class="column">
             <b-field label="Fuseau horraire offset">
               <b-input
@@ -40,6 +41,7 @@
               </b-input>
             </b-field>
           </div>
+-->
         </div>
       </div>
       <InputGps :api="api" :swTransit="false" @change-lat-lng="changeLatLng" />
@@ -99,9 +101,8 @@ export default class InputData extends Vue {
     const year = this.ddmmyyyy.getFullYear();
     const month = this.ddmmyyyy.getMonth();
     const day = this.ddmmyyyy.getDay();
-    const hour =
-      parseInt(this.hhmm.getHours().toString(), 10) +
-      parseInt(this.offset.toString(), 10);
+    const hour = parseInt(this.hhmm.getHours().toString(), 10);
+    //  parseInt(this.offset.toString(), 10);
     const min = parseInt(this.hhmm.getMinutes().toString(), 10);
     axios
       .post(
