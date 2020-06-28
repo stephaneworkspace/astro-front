@@ -4,7 +4,7 @@
     <section>
       <div class="form-astro">
         <div class="columns">
-          <div class="column">
+          <!--          <div class="column">
             <b-field label="Date de naissance">
               <b-datepicker
                 placeholder="Votre date de naissance"
@@ -16,6 +16,44 @@
               </b-datepicker>
             </b-field>
           </div>
+-->
+          <div class="column">
+            <b-field label="Jour de naissance">
+              <b-input
+                placeholder="Votre jour de naissance"
+                icon="calendar-today"
+                size="is-medium"
+                v-model="dd"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
+          </div>
+          <div class="column">
+            <b-field label="Mois de naissance">
+              <b-input
+                placeholder="Votre n° de mois de naissance"
+                icon="calendar-today"
+                size="is-medium"
+                v-model="mm"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
+          </div>
+          <div class="column">
+            <b-field label="Année de naissance">
+              <b-input
+                placeholder="Votre année de naissance"
+                icon="calendar-today"
+                size="is-medium"
+                v-model="yyyy"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
+          </div>
+          <!--
           <div class="column">
             <b-field label="Heure de naissance">
               <b-timepicker
@@ -26,6 +64,31 @@
                 @input="onChange"
               >
               </b-timepicker>
+            </b-field>
+          </div>
+-->
+          <div class="column">
+            <b-field label="Heure de naissance">
+              <b-input
+                placeholder="Votre heure de naissance"
+                icon="clock"
+                size="is-medium"
+                v-model="hh"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
+          </div>
+          <div class="column">
+            <b-field label="Minute de naissance">
+              <b-input
+                placeholder="Votre minute de naissance"
+                icon="clock"
+                size="is-medium"
+                v-model="minute"
+                @input="onChange"
+              >
+              </b-input>
             </b-field>
           </div>
           <!--          <div class="column">
@@ -48,6 +111,7 @@
           @change-lat-lng="changeLatLngNatal"
         />
         <div class="columns">
+          <!--
           <div class="column">
             <b-field label="Date du transit">
               <b-datepicker
@@ -60,6 +124,44 @@
               </b-datepicker>
             </b-field>
           </div>
+-->
+          <div class="column">
+            <b-field label="Jour du transit">
+              <b-input
+                placeholder="Votre jour de transit"
+                icon="calendar-today"
+                size="is-medium"
+                v-model="ddTransit"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
+          </div>
+          <div class="column">
+            <b-field label="Mois de transit">
+              <b-input
+                placeholder="Votre n° de mois de transit"
+                icon="calendar-today"
+                size="is-medium"
+                v-model="mmTransit"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
+          </div>
+          <div class="column">
+            <b-field label="Année de transit">
+              <b-input
+                placeholder="Votre année de transit"
+                icon="calendar-today"
+                size="is-medium"
+                v-model="yyyyTransit"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
+          </div>
+          <!--
           <div class="column">
             <b-field label="Heure de transit">
               <b-timepicker
@@ -73,6 +175,33 @@
               </b-timepicker>
             </b-field>
           </div>
+-->
+          <div class="column">
+            <b-field label="Heure de naissance">
+              <b-input
+                placeholder="Votre heure de naissance"
+                icon="clock"
+                size="is-medium"
+                v-model="hhTransit"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
+          </div>
+          <div class="column">
+            <b-field label="Minute de naissance">
+              <b-input
+                placeholder="Votre minute de naissance"
+                icon="clock"
+                size="is-medium"
+                v-model="minuteTransit"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
+          </div>
+
+          <!--
           <div class="column">
             <b-field label="Fuseau horraire offseti transit">
               <b-input
@@ -85,6 +214,7 @@
               </b-input>
             </b-field>
           </div>
+-->
         </div>
       </div>
       <InputGps
@@ -105,6 +235,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import NatalChart from "@/components/NatalChart.vue";
 import InputAspect from "@/components/InputAspect.vue";
 import InputGps from "@/components/InputGps.vue";
+import moment from "moment";
 const axios = require("axios").default;
 
 export interface DataObjectAspectSvg {
@@ -125,13 +256,23 @@ export default class InputData extends Vue {
   public show = false;
   public show2 = false;
   public valid = false;
-  public ddmmyyyy: Date = new Date();
+  //public ddmmyyyy: Date = new Date();
+  public yyyy: string = new Date().getFullYear().toString();
+  public mm: string = (new Date().getMonth() + 1).toString();
+  public dd: string = moment().format("DD");
   public hhmm: Date = new Date();
+  public hh: string = new Date().getHours().toString();
+  public minute: string = new Date().getMinutes().toString();
   public offset = "2";
   public lat = 46.0222;
   public lng = 6.14569;
-  public ddmmyyyyTransit: Date = new Date();
+  //public ddmmyyyyTransit: Date = new Date();
+  public yyyyTransit: string = new Date().getFullYear().toString();
+  public mmTransit: string = (new Date().getMonth() + 1).toString();
+  public ddTransit: string = moment().format("DD");
   public hhmmTransit: Date = new Date();
+  public hhTransit: string = new Date().getHours().toString();
+  public minuteTransit: string = new Date().getMinutes().toString();
   public offsetTransit = "2";
   public latTransit = 46.0222;
   public lngTransit = 6.14569;
@@ -163,7 +304,7 @@ export default class InputData extends Vue {
     const config = {
       "Content-Type": "application/x-www-form-urlencoded"
     };
-    const year = this.ddmmyyyy.getFullYear();
+    /*const year = this.ddmmyyyy.getFullYear();
     // const month = this.ddmmyyyy.getMonth(); // BUG
     // const day = this.ddmmyyyy.getDay(); // BUG
     const day = this.ddmmyyyy.getMonth();
@@ -179,33 +320,34 @@ export default class InputData extends Vue {
     const hourT = parseInt(this.hhmmTransit.getHours().toString(), 10);
     //parseInt(this.offsetTransit.toString(), 10);
     const minT = parseInt(this.hhmmTransit.getMinutes().toString(), 10);
+    */
     axios
       .post(
         this.api + "svg_chart_transit",
         "year=" +
-          year +
+          parseInt(this.yyyy, 10) +
           "&month=" +
-          month +
+          parseInt(this.mm, 10) +
           "&day=" +
-          day +
+          parseInt(this.dd, 10) +
           "&hour=" +
-          hour +
+          parseInt(this.hh, 10) +
           "&min=" +
-          min +
+          parseInt(this.minute, 10) +
           "&lat=" +
           this.lat +
           "&lng=" +
           this.lng +
           "&year_t=" +
-          yearT +
+          parseInt(this.yyyyTransit, 10) +
           "&month_t=" +
-          monthT +
+          parseInt(this.mmTransit, 10) +
           "&day_t=" +
-          dayT +
+          parseInt(this.ddTransit, 10) +
           "&hour_t=" +
-          hourT +
+          parseInt(this.hhTransit, 10) +
           "&min_t=" +
-          minT +
+          parseInt(this.minuteTransit, 10) +
           "&lat_t=" +
           this.latTransit +
           "&lng_t=" +

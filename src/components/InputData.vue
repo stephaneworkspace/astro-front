@@ -4,6 +4,9 @@
     <section>
       <div class="form-astro">
         <div class="columns">
+          <!--
+          // This library as a problem with the format of date
+          // and ergonomy
           <div class="column">
             <b-field label="Date de naissance">
               <b-datepicker
@@ -15,7 +18,45 @@
               >
               </b-datepicker>
             </b-field>
+-->
+          <div class="column">
+            <b-field label="Jour de naissance">
+              <b-input
+                placeholder="Votre jour de naissance"
+                icon="calendar-today"
+                size="is-medium"
+                v-model="dd"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
           </div>
+          <div class="column">
+            <b-field label="Mois de naissance">
+              <b-input
+                placeholder="Votre n° de mois de naissance"
+                icon="calendar-today"
+                size="is-medium"
+                v-model="mm"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
+          </div>
+          <div class="column">
+            <b-field label="Année de naissance">
+              <b-input
+                placeholder="Votre année de naissance"
+                icon="calendar-today"
+                size="is-medium"
+                v-model="yyyy"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
+          </div>
+          <!--
+          // No good ergonomy
           <div class="column">
             <b-field label="Heure de naissance">
               <b-timepicker
@@ -26,6 +67,31 @@
                 @input="onChange"
               >
               </b-timepicker>
+            </b-field>
+          </div>
+-->
+          <div class="column">
+            <b-field label="Heure de naissance">
+              <b-input
+                placeholder="Votre heure de naissance"
+                icon="clock"
+                size="is-medium"
+                v-model="hh"
+                @input="onChange"
+              >
+              </b-input>
+            </b-field>
+          </div>
+          <div class="column">
+            <b-field label="Minute de naissance">
+              <b-input
+                placeholder="Votre minute de naissance"
+                icon="clock"
+                size="is-medium"
+                v-model="minute"
+                @input="onChange"
+              >
+              </b-input>
             </b-field>
           </div>
           <!--
@@ -58,7 +124,10 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 import NatalChart from "@/components/NatalChart.vue";
 import InputAspect from "@/components/InputAspect.vue";
 import InputGps from "@/components/InputGps.vue";
+import moment from "moment";
 const axios = require("axios").default;
+//const moment = require("moment");
+//moment().format();
 
 @Component({
   components: {
@@ -71,9 +140,13 @@ export default class InputData extends Vue {
   @Prop() private api!: string;
   public show = false;
   public valid = false;
-  public ddmmyyyy: Date = new Date();
+  // public ddmmyyyy: Date = new Date();
+  public yyyy: string = new Date().getFullYear().toString();
+  public mm: string = (new Date().getMonth() + 1).toString();
+  public dd: string = moment().format("DD");
   public hhmm: Date = new Date();
-  public offset = "2";
+  public hh: string = new Date().getHours().toString();
+  public minute: string = new Date().getMinutes().toString();
   public lat = 46.0222;
   public lng = 6.14569;
   public svg = "";
@@ -98,27 +171,29 @@ export default class InputData extends Vue {
     const config = {
       "Content-Type": "application/x-www-form-urlencoded"
     };
-    const year = this.ddmmyyyy.getFullYear();
-    //const month = this.ddmmyyyy.getMonth(); // BUG
-    //const day = this.ddmmyyyy.getDay(); // BUG
-    const day = this.ddmmyyyy.getMonth(); // BUG
-    const month = this.ddmmyyyy.getDay(); // BUG
-    const hour = parseInt(this.hhmm.getHours().toString(), 10);
+    // console.log(this.ddmmyyyy);
+    // const dateFinal = moment(this.ddmmyyyy, "DD/MM/YYYY");
+    // const year = dateFinal.year();
+    // const month = dateFinal.month();
+    // const day = dateFinal.day();
+    // const hour = parseInt(this.hhmm.getHours().toString(), 10);
     //  parseInt(this.offset.toString(), 10);
-    const min = parseInt(this.hhmm.getMinutes().toString(), 10);
+    // const min = parseInt(this.hhmm.getMinutes().toString(), 10);
+    console.log(moment());
+    console.log(moment().day());
     axios
       .post(
         this.api + "svg_chart",
         "year=" +
-          year +
+          parseInt(this.yyyy, 10) +
           "&month=" +
-          month +
+          parseInt(this.mm, 10) +
           "&day=" +
-          day +
+          parseInt(this.dd, 10) +
           "&hour=" +
-          hour +
+          parseInt(this.hh, 10) +
           "&min=" +
-          min +
+          parseInt(this.minute, 10) +
           "&lat=" +
           this.lat +
           "&lng=" +
