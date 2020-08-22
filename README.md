@@ -1,4 +1,8 @@
-# Vue.js project
+# www.astrologie-traditionnelle.net
+
+## Sources
+
+### This -> Typescript -> Vue.js framework
 
 Source code from https://www.astrologie-traditionnelle.net
 
@@ -14,6 +18,32 @@ licensed GPL.
 Therefore, if you want to use astro_compute_swisseph in your commercial
 projects, you must adhere to the GPL license or buy a Swiss Ephemeris
 commercial license.
+
+## Backend -> Rust -> Actix framework
+
+Simple backend
+
+https://github.com/stephaneworkspace/actixastrology
+
+## Rust
+
+Generate svg
+
+https://github.com/stephaneworkspace/astrology
+
+## Rust
+
+Bridge with the C library of swissephem
+
+https://github.com/stephaneworkspace/libswe-sys
+
+## Rust -> Diesel ORM -> Sqlite -> 
+
+Query city / timezone offset / latitude / longitude
+
+https://github.com/stephaneworkspace/city_time_zone_sqlite
+
+### Yarn command for this project (Vue.js)
 
 ## Project setup
 ```
