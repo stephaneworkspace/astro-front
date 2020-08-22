@@ -142,7 +142,11 @@
           @change-lat-lng-offset="changeLatLngOffsetTransit"
         />
       </div>
-      <InputAspect :api="api" @change-aspect="updateAspect" />
+    </section>
+    <section class="section">
+      <div class="container">
+        <InputAspect :api="api" @change-aspect="updateAspect" />
+      </div>
     </section>
     <div v-if="show">
       <NatalChart :svg="svg" />
