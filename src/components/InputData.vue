@@ -147,7 +147,7 @@ export default class InputData extends Vue {
   public hhmm: Date = new Date();
   public hh: string = new Date().getHours().toString();
   public minute: string = new Date().getMinutes().toString();
-  public lat = 46.0222;
+  public lat = 46.20222;
   public lng = 6.14569;
   public svg = "";
   public aspectSelect = 0;

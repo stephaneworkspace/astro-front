@@ -264,7 +264,7 @@ export default class InputData extends Vue {
   public hh: string = new Date().getHours().toString();
   public minute: string = new Date().getMinutes().toString();
   public offset = "2";
-  public lat = 46.0222;
+  public lat = 46.20222;
   public lng = 6.14569;
   //public ddmmyyyyTransit: Date = new Date();
   public yyyyTransit: string = new Date().getFullYear().toString();
@@ -274,7 +274,7 @@ export default class InputData extends Vue {
   public hhTransit: string = new Date().getHours().toString();
   public minuteTransit: string = new Date().getMinutes().toString();
   public offsetTransit = "2";
-  public latTransit = 46.0222;
+  public latTransit = 46.20222;
   public lngTransit = 6.14569;
   public svg = "";
   public aspectSelect = 0;
