@@ -1,8 +1,8 @@
 <template>
-  <div class="hello">
+  <div>
     <h3><strong>Vos coordonées</strong></h3>
-    <section>
-      <div class="form-astro">
+    <section class="section">
+      <div class="container">
         <div class="columns">
           <div class="column">
             <b-field label="Jour de naissance">
@@ -281,8 +281,5 @@ h3 {
 }
 a {
   color: #7957d5;
-}
-.form-astro {
-  margin: 20px 20px 20px;
 }
 </style>
