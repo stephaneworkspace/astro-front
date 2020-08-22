@@ -9,7 +9,6 @@
       <b-field :label="!swTransit ? 'Latitude' : 'Latitude de transit'">
         <b-input
           icon="compass"
-          size="is-small"
           v-if="!swAutoComplete"
           v-model="lat"
           :placeholder="
@@ -22,7 +21,6 @@
         </b-input>
         <b-input
           icon="compass"
-          size="is-small"
           v-if="swAutoComplete"
           v-model="lat"
           :placeholder="
@@ -39,7 +37,6 @@
       <b-field :label="!swTransit ? 'Longitude' : 'Longitude de transit'">
         <b-input
           icon="compass"
-          size="is-small"
           v-if="!swAutoComplete"
           v-model="lng"
           :placeholder="
@@ -69,7 +66,6 @@
       <b-field :label="!swTransit ? 'Zone' : 'Zone lors du transit'">
         <b-select
           icon="compass"
-          size="is-small"
           v-model="offset"
           :placeholder="
             !swTransit
@@ -91,7 +87,6 @@
       <b-field label="Recherche">
         <b-autocomplete
           icon="search"
-          size="is-small"
           v-model="name"
           :placeholder="
             !swTransit ? 'Votre ville de naissance' : 'Votre ville de transit'
