@@ -49,7 +49,6 @@
         </b-input>
         <b-input
           icon="compass"
-          size="is-small"
           v-if="swAutoComplete"
           v-model="lng"
           :placeholder="
