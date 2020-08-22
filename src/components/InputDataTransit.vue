@@ -132,12 +132,12 @@
             </b-field>
           </div>
         </div>
+        <InputGps
+          :api="api"
+          :swTransit="true"
+          @change-lat-lng-offset="changeLatLngOffsetTransit"
+        />
       </div>
-      <InputGps
-        :api="api"
-        :swTransit="true"
-        @change-lat-lng-offset="changeLatLngOffsetTransit"
-      />
       <InputAspect :api="api" @change-aspect="updateAspect" />
     </section>
     <div v-if="show">

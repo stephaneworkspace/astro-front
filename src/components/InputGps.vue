@@ -303,8 +303,4 @@ export default class InputData extends Vue {
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.form-astro-gps {
-  margin: 20px;
-}
-</style>
+<style scoped></style>
