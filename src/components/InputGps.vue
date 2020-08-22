@@ -75,8 +75,8 @@
         >
           <option
             v-for="option in listTimeZone"
-            :value="option.text"
-            :key="option.id"
+            :value="option.d03_text"
+            :key="option.d03_id"
           >
             {{ option.text }}
           </option>
@@ -132,10 +132,10 @@ export interface FilterCity {
   lng: number;
 }
 
-export interface TimeZoneCompact {
-  id: string;
-  offset: number;
-  text: string;
+export interface D03TimeZoneInfo {
+  d03_id: string;
+  d03_offset: number;
+  d03_text: string;
 }
 
 @Component({})
@@ -145,7 +145,7 @@ export default class InputData extends Vue {
   public swAutoComplete = false;
   public list: FilterCity[] = [];
   public selected: FilterCity = { country: "", name: "", lat: 0, lng: 0 };
-  public listTimeZone: TimeZoneCompact[] = [];
+  public listTimeZone: D03TimeZoneInfo[] = [];
   public isFetching = false;
   public lat = 46.20222;
   public lng = 6.14569;
