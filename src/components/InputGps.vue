@@ -123,7 +123,7 @@ export default class InputData extends Vue {
   public list: FilterCity[] = [];
   public selected: FilterCity = { country: "", name: "", lat: 0, lng: 0 };
   public isFetching = false;
-  public lat = 46.0222;
+  public lat = 46.20222;
   public lng = 6.14569;
   public name = "";
 
