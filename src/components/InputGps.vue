@@ -168,7 +168,7 @@ export default class InputData extends Vue {
       "Content-Type": "application/x-www-form-urlencoded,charset=utf-8"
     };
     axios
-      .get(this.api + "filter-city-2/" + name, config)
+      .get(this.api + "filter-city/" + name, config)
       .then(res => {
         this.list = res.data;
         //this.$forceUpdate();
