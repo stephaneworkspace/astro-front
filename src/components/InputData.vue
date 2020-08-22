@@ -179,8 +179,8 @@ export default class InputData extends Vue {
     // const hour = parseInt(this.hhmm.getHours().toString(), 10);
     //  parseInt(this.offset.toString(), 10);
     // const min = parseInt(this.hhmm.getMinutes().toString(), 10);
-    console.log(moment());
-    console.log(moment().day());
+    // console.log(moment());
+    // console.log(moment().day());
     axios
       .post(
         this.api + "svg_chart",
