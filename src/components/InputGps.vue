@@ -91,11 +91,9 @@
     <div class="column" v-if="swAutoComplete">
       <b-field label="Recherche">
         <b-autocomplete
-          icon="search"
+          icon="compass"
           v-model="name"
-          :placeholder="
-            !swTransit ? 'Votre ville de naissance' : 'Votre ville de transit'
-          "
+          placeholder="Recherche"
           :field="!swTransit ? 'Ville de naissance' : 'Ville de transit'"
           :data="list"
           :loading="isFetching"
@@ -136,6 +134,13 @@ export interface FilterCity {
   name: string;
   lat: number;
   lng: number;
+  tz_name: string;
+  tz: FilterTz[];
+}
+
+export interface FilterTz {
+  offset: number;
+  text: string;
 }
 
 export interface D03TimeZoneInfo {
@@ -150,7 +155,16 @@ export default class InputData extends Vue {
   @Prop() private swTransit!: boolean;
   public swAutoComplete = false;
   public list: FilterCity[] = [];
-  public selected: FilterCity = { country: "", name: "", lat: 0, lng: 0 };
+  /* eslint-disable @typescript-eslint/camelcase */
+  public selected: FilterCity = {
+    country: "".toString(),
+    name: "".toString(),
+    lat: 0,
+    lng: 0,
+    tz_name: "".toString(),
+    tz: []
+  };
+  /* eslint-enable @typescript-eslint/camelcase */
   public listTimeZone: D03TimeZoneInfo[] = [];
   public isFetching = false;
   public lat = 46.20222;
@@ -178,12 +192,31 @@ export default class InputData extends Vue {
 
   public onChangeSearch() {
     if (this.name == "") {
-      this.selected = { country: "", name: "", lat: 0, lng: 0 };
+      /* eslint-disable @typescript-eslint/camelcase */
+      this.selected = {
+        country: "".toString(),
+        name: "".toString(),
+        lat: 0,
+        lng: 0,
+        tz_name: "".toString(),
+        tz: []
+      };
+      /* eslint-enable @typescript-eslint/camelcase */
     }
     if (this.selected.name !== "") {
+      this.listTimeZone.forEach(l => {
+        this.selected.tz.forEach(t => {
+          if (l.d03_text == t.text) {
+            this.tz = l.d03_id;
+            this.offset = l.d03_offset;
+            return;
+          }
+        });
+      });
       this.lat = this.selected.lat;
       this.lng = this.selected.lng;
       this.onChange();
+      this.swAutoComplete = false;
     }
   }
 
