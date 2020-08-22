@@ -1,7 +1,7 @@
 <template>
   <div class="form-astro-gps columns">
     <div class="column">
-      <b-field label="Mode de saisie manuel/recherche">
+      <b-field label="Recherche">
         <b-switch v-model="swAutoComplete" />
       </b-field>
     </div>
@@ -9,7 +9,7 @@
       <b-field :label="!swTransit ? 'Latitude' : 'Latitude de transit'">
         <b-input
           icon="compass"
-          size="is-medium"
+          size="is-small"
           v-if="!swAutoComplete"
           v-model="lat"
           :placeholder="
@@ -22,7 +22,7 @@
         </b-input>
         <b-input
           icon="compass"
-          size="is-medium"
+          size="is-small"
           v-if="swAutoComplete"
           v-model="lat"
           :placeholder="
@@ -39,7 +39,7 @@
       <b-field :label="!swTransit ? 'Longitude' : 'Longitude de transit'">
         <b-input
           icon="compass"
-          size="is-medium"
+          size="is-small"
           v-if="!swAutoComplete"
           v-model="lng"
           :placeholder="
@@ -52,7 +52,7 @@
         </b-input>
         <b-input
           icon="compass"
-          size="is-medium"
+          size="is-small"
           v-if="swAutoComplete"
           v-model="lng"
           :placeholder="
@@ -65,11 +65,33 @@
         </b-input>
       </b-field>
     </div>
+    <div class="column">
+      <b-field :label="!swTransit ? 'Zone' : 'Zone lors du transit'">
+        <b-select
+          icon="compass"
+          size="is-small"
+          v-model="offset"
+          :placeholder="
+            !swTransit
+              ? 'Votre décalage horaire de naissance'
+              : 'Votre décalage horaire lors du transit'
+          "
+        >
+          <option
+            v-for="option in listTimeZone"
+            :value="option.text"
+            :key="option.id"
+          >
+            {{ option.text }}
+          </option>
+        </b-select>
+      </b-field>
+    </div>
     <div class="column" v-if="swAutoComplete">
       <b-field label="Recherche">
         <b-autocomplete
           icon="search"
-          size="is-medium"
+          size="is-small"
           v-model="name"
           :placeholder="
             !swTransit ? 'Votre ville de naissance' : 'Votre ville de transit'
@@ -115,6 +137,12 @@ export interface FilterCity {
   lng: number;
 }
 
+export interface TimeZoneCompact {
+  id: string;
+  offset: number;
+  text: string;
+}
+
 @Component({})
 export default class InputData extends Vue {
   @Prop() private api!: string;
@@ -122,10 +150,12 @@ export default class InputData extends Vue {
   public swAutoComplete = false;
   public list: FilterCity[] = [];
   public selected: FilterCity = { country: "", name: "", lat: 0, lng: 0 };
+  public listTimeZone: TimeZoneCompact[] = [];
   public isFetching = false;
   public lat = 46.20222;
   public lng = 6.14569;
   public name = "";
+  public offset = 1.0;
 
   public getFlag(country) {
     return require("../assets/" + country + ".png");
@@ -154,6 +184,18 @@ export default class InputData extends Vue {
 
   public onChange() {
     this.$emit("change-lat-lng", { lat: this.lat, lng: this.lng });
+  }
+
+  private created() {
+    axios
+      .get(this.api + "filter-city-time-zone")
+      .then(res => {
+        this.listTimeZone = res.data;
+      })
+      .catch(error => {
+        this.listTimeZone = [];
+        throw error;
+      });
   }
 
   //@Watch("getAsyncData")
