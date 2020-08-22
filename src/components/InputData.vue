@@ -199,7 +199,8 @@ export default class InputData extends Vue {
           "&lng=" +
           this.lng +
           "&aspect=" +
-          this.aspectSelect,
+          this.aspectSelect +
+          "&time_zone=1.0",
         config
       )
       .then(res => {
