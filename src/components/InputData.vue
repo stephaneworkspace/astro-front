@@ -4,21 +4,6 @@
     <section>
       <div class="form-astro">
         <div class="columns">
-          <!--
-          // This library as a problem with the format of date
-          // and ergonomy
-          <div class="column">
-            <b-field label="Date de naissance">
-              <b-datepicker
-                placeholder="Votre date de naissance"
-                icon="calendar-today"
-                size="is-medium"
-                v-model="ddmmyyyy"
-                @input="onChange"
-              >
-              </b-datepicker>
-            </b-field>
--->
           <div class="column">
             <b-field label="Jour de naissance">
               <b-input
@@ -55,21 +40,6 @@
               </b-input>
             </b-field>
           </div>
-          <!--
-          // No good ergonomy
-          <div class="column">
-            <b-field label="Heure de naissance">
-              <b-timepicker
-                placeholder="Votre heure de naissance"
-                icon="clock"
-                size="is-medium"
-                v-model="hhmm"
-                @input="onChange"
-              >
-              </b-timepicker>
-            </b-field>
-          </div>
--->
           <div class="column">
             <b-field label="Heure de naissance">
               <b-input
@@ -94,20 +64,6 @@
               </b-input>
             </b-field>
           </div>
-          <!--
-          <div class="column">
-            <b-field label="Fuseau horraire offset">
-              <b-input
-                placeholder="2 pour Genève"
-                icon="clock"
-                size="is-medium"
-                v-model="offset"
-                @input="onChange"
-              >
-              </b-input>
-            </b-field>
-          </div>
--->
         </div>
       </div>
       <InputGps
@@ -177,16 +133,6 @@ export default class InputData extends Vue {
     const config = {
       "Content-Type": "application/x-www-form-urlencoded"
     };
-    // console.log(this.ddmmyyyy);
-    // const dateFinal = moment(this.ddmmyyyy, "DD/MM/YYYY");
-    // const year = dateFinal.year();
-    // const month = dateFinal.month();
-    // const day = dateFinal.day();
-    // const hour = parseInt(this.hhmm.getHours().toString(), 10);
-    //  parseInt(this.offset.toString(), 10);
-    // const min = parseInt(this.hhmm.getMinutes().toString(), 10);
-    // console.log(moment());
-    // console.log(moment().day());
     axios
       .post(
         `${this.api}svg_chart`,

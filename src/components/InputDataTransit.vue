@@ -4,19 +4,6 @@
     <section>
       <div class="form-astro">
         <div class="columns">
-          <!--          <div class="column">
-            <b-field label="Date de naissance">
-              <b-datepicker
-                placeholder="Votre date de naissance"
-                icon="calendar-today"
-                size="is-medium"
-                v-model="ddmmyyyy"
-                @input="onChange"
-              >
-              </b-datepicker>
-            </b-field>
-          </div>
--->
           <div class="column">
             <b-field label="Jour de naissance">
               <b-input
@@ -53,20 +40,6 @@
               </b-input>
             </b-field>
           </div>
-          <!--
-          <div class="column">
-            <b-field label="Heure de naissance">
-              <b-timepicker
-                placeholder="Votre heure de naissance"
-                icon="clock"
-                size="is-medium"
-                v-model="hhmm"
-                @input="onChange"
-              >
-              </b-timepicker>
-            </b-field>
-          </div>
--->
           <div class="column">
             <b-field label="Heure de naissance">
               <b-input
@@ -91,19 +64,6 @@
               </b-input>
             </b-field>
           </div>
-          <!--          <div class="column">
-            <b-field label="Fuseau horraire offset">
-              <b-input
-                placeholder="2 pour Genève"
-                icon="clock"
-                size="is-medium"
-                v-model="offset"
-                @input="onChange"
-              >
-              </b-input>
-            </b-field>
-          </div>
--->
         </div>
         <InputGps
           :api="api"
@@ -111,20 +71,6 @@
           @change-lat-lng-offset="changeLatLngOffsetNatal"
         />
         <div class="columns">
-          <!--
-          <div class="column">
-            <b-field label="Date du transit">
-              <b-datepicker
-                placeholder="Votre date de transit"
-                icon="calendar-today"
-                size="is-medium"
-                v-model="ddmmyyyyTransit"
-                @input="onChange"
-              >
-              </b-datepicker>
-            </b-field>
-          </div>
--->
           <div class="column">
             <b-field label="Jour du transit">
               <b-input
@@ -161,21 +107,6 @@
               </b-input>
             </b-field>
           </div>
-          <!--
-          <div class="column">
-            <b-field label="Heure de transit">
-              <b-timepicker
-                placeholder="Votre heure de transit"
-                icon="clock"
-                size="is-medium"
-                v-model="hhmmTransit"
-                @input="onChange"
-                editable
-              >
-              </b-timepicker>
-            </b-field>
-          </div>
--->
           <div class="column">
             <b-field label="Heure de naissance">
               <b-input
@@ -200,21 +131,6 @@
               </b-input>
             </b-field>
           </div>
-
-          <!--
-          <div class="column">
-            <b-field label="Fuseau horraire offseti transit">
-              <b-input
-                placeholder="2 pour Genève"
-                icon="clock"
-                size="is-medium"
-                v-model="offsetTransit"
-                @input="onChange"
-              >
-              </b-input>
-            </b-field>
-          </div>
--->
         </div>
       </div>
       <InputGps
@@ -256,7 +172,6 @@ export default class InputData extends Vue {
   public show = false;
   public show2 = false;
   public valid = false;
-  //public ddmmyyyy: Date = new Date();
   public yyyy: string = new Date().getFullYear().toString();
   public mm: string = (new Date().getMonth() + 1).toString();
   public dd: string = moment().format("DD");
@@ -266,7 +181,6 @@ export default class InputData extends Vue {
   public offset = 2.0;
   public lat = 46.20222;
   public lng = 6.14569;
-  //public ddmmyyyyTransit: Date = new Date();
   public yyyyTransit: string = new Date().getFullYear().toString();
   public mmTransit: string = (new Date().getMonth() + 1).toString();
   public ddTransit: string = moment().format("DD");
@@ -306,23 +220,6 @@ export default class InputData extends Vue {
     const config = {
       "Content-Type": "application/x-www-form-urlencoded"
     };
-    /*const year = this.ddmmyyyy.getFullYear();
-    // const month = this.ddmmyyyy.getMonth(); // BUG
-    // const day = this.ddmmyyyy.getDay(); // BUG
-    const day = this.ddmmyyyy.getMonth();
-    const month = this.ddmmyyyy.getDay();
-    const hour = parseInt(this.hhmm.getHours().toString(), 10);
-    //   parseInt(this.offset.toString(), 10);
-    const min = parseInt(this.hhmm.getMinutes().toString(), 10);
-    const yearT = this.ddmmyyyyTransit.getFullYear();
-    // const monthT = this.ddmmyyyyTransit.getMonth(); // BUG
-    // const dayT = this.ddmmyyyyTransit.getDay(); // BUG
-    const dayT = this.ddmmyyyyTransit.getMonth();
-    const monthT = this.ddmmyyyyTransit.getDay();
-    const hourT = parseInt(this.hhmmTransit.getHours().toString(), 10);
-    //parseInt(this.offsetTransit.toString(), 10);
-    const minT = parseInt(this.hhmmTransit.getMinutes().toString(), 10);
-    */
     axios
       .post(
         this.api + "svg_chart_transit",
