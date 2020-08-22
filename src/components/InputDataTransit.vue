@@ -338,7 +338,7 @@ export default class InputData extends Vue {
           this.lat +
           "&lng=" +
           this.lng +
-          "&time_zone = 1.0" +
+          "&time_zone=1.0" +
           "&year_t=" +
           parseInt(this.yyyyTransit, 10) +
           "&month_t=" +
@@ -353,7 +353,7 @@ export default class InputData extends Vue {
           this.latTransit +
           "&lng_t=" +
           this.lngTransit +
-          "&time_zone_t = 1.0" +
+          "&time_zone_t=1.0" +
           "&aspect=" +
           this.aspectSelect,
         config
