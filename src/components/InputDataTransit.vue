@@ -70,6 +70,10 @@
           :swTransit="false"
           @change-lat-lng-offset="changeLatLngOffsetNatal"
         />
+      </div>
+    </section>
+    <section class="section">
+      <div class="container">
         <div class="columns">
           <div class="column">
             <b-field label="Jour du transit">
