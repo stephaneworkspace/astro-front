@@ -189,7 +189,7 @@ export default class InputData extends Vue {
     // console.log(moment().day());
     axios
       .post(
-        this.api + "svg_chart",
+        `${this.api}svg_chart`,
         "year=" +
           parseInt(this.yyyy, 10) +
           "&month=" +

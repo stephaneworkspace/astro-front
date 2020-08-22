@@ -80,9 +80,9 @@
           >
             {{ option.d03_text }}
             {{
-              option.d03_offset
+              option.d03_offset >= 0
                 ? "(GMT+" + numberToHour(option.d03_offset) + ")"
-                : "(GMT-" + numberToHour(option.d03_offset) + ")"
+                : "(GMT-" + numberToHour(option.d03_offset * -1.0) + ")"
             }}
           </option>
         </b-select>
