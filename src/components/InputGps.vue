@@ -165,9 +165,8 @@ export default class InputData extends Vue {
     }
     this.isFetching = true;
     const config = {
-      "Content-Type": "application/x-www-form-urlencoded"
+      "Content-Type": "application/x-www-form-urlencoded,charset=utf-8"
     };
-    //name = unescape(encodeURIComponent(name));
     axios
       .get(this.api + "filter-city-2/" + name, config)
       .then(res => {
