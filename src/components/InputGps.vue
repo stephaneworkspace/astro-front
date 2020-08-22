@@ -65,7 +65,8 @@
       <b-field :label="!swTransit ? 'Zone' : 'Zone lors du transit'">
         <b-select
           icon="compass"
-          v-model="offset"
+          v-model="tz"
+          @input="onChangeTz"
           :placeholder="
             !swTransit
               ? 'Votre décalage horaire de naissance'
@@ -74,10 +75,15 @@
         >
           <option
             v-for="option in listTimeZone"
-            :value="option.d03_text"
+            :value="option.d03_id"
             :key="option.d03_id"
           >
             {{ option.d03_text }}
+            {{
+              option.d03_offset
+                ? "(GMT+" + numberToHour(option.d03_offset) + ")"
+                : "(GMT-" + numberToHour(option.d03_offset) + ")"
+            }}
           </option>
         </b-select>
       </b-field>
@@ -118,10 +124,11 @@
   </div>
 </template>
 <script lang="ts">
-import { Component, Prop, Watch, Vue } from "vue-property-decorator";
+import { Component, Prop, /*Watch,*/ Vue } from "vue-property-decorator";
 //import debounce from "loadash/debounce";
 import { Debounce } from "vue-debounce-decorator";
-
+import moment from "moment";
+moment().format();
 const axios = require("axios").default;
 
 export interface FilterCity {
@@ -149,7 +156,21 @@ export default class InputData extends Vue {
   public lat = 46.20222;
   public lng = 6.14569;
   public name = "";
-  public offset = 1.0;
+  public tz: string = "".toString();
+  public offset = 2.0;
+  public timeZoneDefault =
+    "(UTC+01:00) Amsterdam, Berlin, Bern, Rome, Stockholm, Vienna";
+
+  public numberToHour(nb: number): string {
+    if (nb == 0.0) {
+      return "00:00".toString();
+    } else {
+      return moment()
+        .startOf("day")
+        .add(parseFloat(nb.toString()), "hours")
+        .format("hh:mm");
+    }
+  }
 
   public getFlag(country) {
     return require("../assets/" + country + ".png");
@@ -176,15 +197,33 @@ export default class InputData extends Vue {
     this.onChange();
   }
 
-  public onChange() {
-    this.$emit("change-lat-lng", { lat: this.lat, lng: this.lng });
+  public onChangeTz(tz) {
+    this.listTimeZone.forEach(l => {
+      if (l.d03_id == tz) {
+        this.offset = l.d03_offset;
+      }
+    });
+    this.onChange();
   }
 
-  private created() {
+  public onChange() {
+    this.$emit("change-lat-lng-offset", {
+      lat: this.lat,
+      lng: this.lng,
+      offset: this.offset
+    });
+  }
+
+  private mounted() {
     axios
       .get(this.api + "filter-city-time-zone")
       .then(res => {
         this.listTimeZone = res.data;
+        this.listTimeZone.forEach(l => {
+          if (l.d03_text == this.timeZoneDefault) {
+            this.tz = l.d03_id;
+          }
+        });
       })
       .catch(error => {
         this.listTimeZone = [];

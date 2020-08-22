@@ -110,7 +110,11 @@
 -->
         </div>
       </div>
-      <InputGps :api="api" :swTransit="false" @change-lat-lng="changeLatLng" />
+      <InputGps
+        :api="api"
+        :swTransit="false"
+        @change-lat-lng-offset="changeLatLngOffset"
+      />
       <InputAspect :api="api" @change-aspect="updateAspect" />
     </section>
     <div v-if="show">
@@ -149,12 +153,14 @@ export default class InputData extends Vue {
   public minute: string = new Date().getMinutes().toString();
   public lat = 46.20222;
   public lng = 6.14569;
+  public offset = 2.0;
   public svg = "";
   public aspectSelect = 0;
 
-  public changeLatLng(e) {
+  public changeLatLngOffset(e) {
     this.lat = e.lat;
     this.lng = e.lng;
+    this.offset = e.offset;
     this.svgNatal();
   }
 
@@ -200,7 +206,8 @@ export default class InputData extends Vue {
           this.lng +
           "&aspect=" +
           this.aspectSelect +
-          "&time_zone=1.0",
+          "&time_zone=" +
+          this.offset,
         config
       )
       .then(res => {

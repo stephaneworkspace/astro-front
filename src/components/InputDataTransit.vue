@@ -108,7 +108,7 @@
         <InputGps
           :api="api"
           :swTransit="false"
-          @change-lat-lng="changeLatLngNatal"
+          @change-lat-lng-offset="changeLatLngOffsetNatal"
         />
         <div class="columns">
           <!--
@@ -220,7 +220,7 @@
       <InputGps
         :api="api"
         :swTransit="true"
-        @change-lat-lng="changeLatLngTransit"
+        @change-lat-lng-offset="changeLatLngOffsetTransit"
       />
       <InputAspect :api="api" @change-aspect="updateAspect" />
     </section>
@@ -263,7 +263,7 @@ export default class InputData extends Vue {
   public hhmm: Date = new Date();
   public hh: string = new Date().getHours().toString();
   public minute: string = new Date().getMinutes().toString();
-  public offset = "2";
+  public offset = 2.0;
   public lat = 46.20222;
   public lng = 6.14569;
   //public ddmmyyyyTransit: Date = new Date();
@@ -273,21 +273,23 @@ export default class InputData extends Vue {
   public hhmmTransit: Date = new Date();
   public hhTransit: string = new Date().getHours().toString();
   public minuteTransit: string = new Date().getMinutes().toString();
-  public offsetTransit = "2";
+  public offsetTransit = 2.0;
   public latTransit = 46.20222;
   public lngTransit = 6.14569;
   public svg = "";
   public aspectSelect = 0;
 
-  public changeLatLngNatal(e) {
+  public changeLatLngOffsetNatal(e) {
     this.lat = e.lat;
     this.lng = e.lng;
+    this.offset = e.offset;
     this.svgNatal();
   }
 
-  public changeLatLngTransit(e) {
+  public changeLatLngOffsetTransit(e) {
     this.latTransit = e.lat;
     this.lngTransit = e.lng;
+    this.offsetTransit = e.offset;
     this.svgNatal();
   }
 
@@ -338,7 +340,8 @@ export default class InputData extends Vue {
           this.lat +
           "&lng=" +
           this.lng +
-          "&time_zone=1.0" +
+          "&time_zone=" +
+          this.offset +
           "&year_t=" +
           parseInt(this.yyyyTransit, 10) +
           "&month_t=" +
@@ -353,7 +356,8 @@ export default class InputData extends Vue {
           this.latTransit +
           "&lng_t=" +
           this.lngTransit +
-          "&time_zone_t=1.0" +
+          "&time_zone_t=" +
+          this.offsetTransit +
           "&aspect=" +
           this.aspectSelect,
         config
