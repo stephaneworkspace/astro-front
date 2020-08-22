@@ -78,7 +78,7 @@
             :value="option.d03_text"
             :key="option.d03_id"
           >
-            {{ option.text }}
+            {{ option.d03_text }}
           </option>
         </b-select>
       </b-field>
