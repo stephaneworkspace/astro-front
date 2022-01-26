@@ -8,7 +8,7 @@
       <router-link to="/">Thème natal</router-link> |
       <router-link to="/transit">Transit</router-link>
     </div>
-    <InputData api="https://www.astrologie-traditionnelle.net/api/" />
+    <InputData api="/api/" />
     <Liscense />
     <img class="logo-bottom" alt="Bottom" src="../assets/bottom.png" />
   </div>
